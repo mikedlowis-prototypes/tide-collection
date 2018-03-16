@@ -10,3 +10,5 @@ clean:
 
 bin/%: src/%.c
 	cc $(INCS) -o $@ $^ $(LIBS)
+
+include deps.mk
