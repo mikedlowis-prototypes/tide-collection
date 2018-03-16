@@ -1,2 +1,0 @@
-#!/bin/sh
-dos2unix | indent -linux -i4 -l500 -bl -bli0 -nce -ncdw -nsai -nsaf -nsaw -ncs | unix2dos
