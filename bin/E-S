@@ -1,0 +1,2 @@
+#!/bin/sh
+sed 's/GNTX_EXTERN\|extern/static/g'

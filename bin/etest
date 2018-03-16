@@ -1,0 +1,10 @@
+#!/bin/sh
+
+[ -f "$HOME/.config/edit/editrc" ] && . "$HOME/.config/edit/editrc"
+
+path="$1"
+file=$(basename -s'.c' $path)
+choice=$(find {T,t}est*/ -type f -iname "*$file*.c" 2> /dev/null | pick)
+if [ "" != "$choice" ]; then
+    (nohup tide "$choice" &> /dev/null) &
+fi
