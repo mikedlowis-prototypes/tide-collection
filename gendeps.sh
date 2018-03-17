@@ -4,7 +4,7 @@ for f in "$@"; do
     fname="${f##*/}"    # Strip path
     fname="${fname%.*}" # Strip extension
     rule="bin/$fname: $f"
-    for h in $(grep '#include' "$f" | sed -E 's/#include <(.+)>/\1/'); do
+    for h in $(sed -nE 's/#include <(.+)>/\1/p' "$f"); do
         [[ -f "inc/$h" ]] && rule="$rule inc/$h"
     done
     echo "$rule"
