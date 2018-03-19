@@ -1,3 +1,5 @@
+MAKEFLAGS = -j4
+
 INCS = \
     -Iinc \
     -I/usr/X11/include \
@@ -6,7 +8,7 @@ INCS = \
 
 LIBS = -L/usr/X11/lib -lX11 -lXft
 
-BINS = bin/pick bin/xcpd bin/tfetch bin/tctl
+BINS = bin/pick bin/xcpd bin/tfetch bin/tctl bin/eol
 
 all: $(BINS)
 
