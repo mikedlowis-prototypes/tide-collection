@@ -43,8 +43,6 @@ int main(int argc, char** argv) {
     SelTarget = XInternAtom(x.display, "UTF8_STRING", 0);
     x.eventfns[SelectionRequest] = selrequest;
     x.eventfns[SelectionClear]   = selclear;
-    if (SelTarget == None)
-        SelTarget = XInternAtom(x.display, "STRING", 0);
     XSetSelectionOwner(x.display, SelType, x.self, CurrentTime);
     while (1) x11_process_events(&x);
     return 0;
