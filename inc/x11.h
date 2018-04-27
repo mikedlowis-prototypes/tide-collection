@@ -77,12 +77,10 @@ static void x11_show(XConf* x) {
     XMapWindow(x->display, x->self);
 }
 
-static void x11_process_events(XConf* x) {
-    for (XEvent e; XPending(x->display);) {
-        XNextEvent(x->display, &e);
-        if (!XFilterEvent(&e, None) && x->eventfns[e.type])
+static void x11_event_loop(XConf* x) {
+    for (XEvent e; XNextEvent(x->display, &e);)
+        if (x->eventfns[e.type])
             x->eventfns[e.type](x, &e);
-    }
 }
 
 

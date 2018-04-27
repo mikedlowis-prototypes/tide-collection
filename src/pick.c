@@ -127,7 +127,7 @@ int main(int argc, char** argv) {
             view_eof(win_view(TAGS), NULL);
         }
 #endif
-        while (true) x11_process_events(&x);
+        x11_event_loop(&x);
     }
     /* print out the choice */
     if (vec_size(&Choices) && ChoiceIdx != SIZE_MAX) {

@@ -73,7 +73,7 @@ void serve_selection(void) {
     if (SelTarget == None)
         SelTarget = XInternAtom(x.display, "STRING", 0);
     XSetSelectionOwner(x.display, SelType, x.self, CurrentTime);
-    while (1) x11_process_events(&x);
+    x11_event_loop(&x);
 }
 
 int main(int argc, char** argv) {
