@@ -82,6 +82,7 @@ static void x11_event_loop(XConf* x) {
         XNextEvent(x->display, &e);
         if (x->eventfns[e.type])
             x->eventfns[e.type](x, &e);
+        for (int status; waitpid(-1, &status, WNOHANG) > 0;);
     }
 }
 
