@@ -4,29 +4,28 @@
 Atom SelType;
 
 void plumb(char* str) {
+    if (!str || !str[0]) return;
     printf("plumb('%s')\n", str);
 }
 
 void selclear(XConf* x, XEvent* e) {
-    puts("exit");
     exit(0);
 }
 
 void propnotify(XConf* x, XEvent* e) {
-    puts("recv");
-    int success, nreturn;
+    int success = 0, nreturn = 0;
     unsigned long nleft;
     XTextProperty prop = {0};
-    if (e->xselection.property == None) return;
+    if (e->xproperty.atom != SelType) return;
     success = XGetWindowProperty(
         x->display, x->self, SelType, 0, -1, True, AnyPropertyType,
         &prop.encoding, &prop.format, &prop.nitems, &nleft, &prop.value
     );
-    if (success) {
+    if (Success == success) {
         char** strlist = NULL;
-        XmbTextPropertyToTextList(x->display, &prop, &strlist, &nreturn);
-        for (int i = 0; i < nreturn; i++)
-            plumb(strlist[i]);
+        if (Success == XmbTextPropertyToTextList(x->display, &prop, &strlist, &nreturn))
+            for (int i = 0; i < nreturn; i++)
+                plumb(strlist[i]);
         if (strlist) XFreeStringList(strlist);
     }
     if (prop.value) XFree(prop.value);

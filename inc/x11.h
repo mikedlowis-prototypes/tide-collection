@@ -78,9 +78,11 @@ static void x11_show(XConf* x) {
 }
 
 static void x11_event_loop(XConf* x) {
-    for (XEvent e; XNextEvent(x->display, &e);)
+    for (XEvent e;;) {
+        XNextEvent(x->display, &e);
         if (x->eventfns[e.type])
             x->eventfns[e.type](x, &e);
+    }
 }
 
 
