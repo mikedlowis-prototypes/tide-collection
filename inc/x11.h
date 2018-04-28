@@ -85,6 +85,3 @@ static void x11_event_loop(XConf* x) {
         for (int status; waitpid(-1, &status, WNOHANG) > 0;);
     }
 }
-
-
-
