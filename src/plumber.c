@@ -218,7 +218,12 @@ bool apply_rule(Rule* rule) {
 
 void plumb(char* str) {
     if (!str || !str[0]) return;
+    char* path = str;
+    for (; *str && *str != '\n'; str++);
+    *str = '\0', str++;
+    char* data = str;
     if (fork() == 0) {
+        chdir(path);
         setenv("data", str, 1);
         for (int i = 0; i < nelem(BuiltinRules); i++) {
             Rule* rule = BuiltinRules[i];
