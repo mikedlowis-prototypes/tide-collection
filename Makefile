@@ -8,8 +8,7 @@ INCS = \
 
 LIBS = -L/usr/X11/lib -lX11 -lXft
 
-BINS = bin/pick bin/xcpd bin/tfetch bin/tctl bin/eol bin/plumb bin/plumber \
-       bin/registrar
+BINS = bin/pick bin/xcpd bin/tctl bin/eol bin/plumb bin/plumber bin/registrar
 
 all: $(BINS)
 
